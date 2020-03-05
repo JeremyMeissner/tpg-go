@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+      function callWS() {
+        const URL = "http://62.210.144.144/ws/index.php?choice=incident";
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == XMLHttpRequest.DONE) {
+            // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+            if (this.status == 200) {
+              // http://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
+              var data = JSON.parse(this.responseText);
+              console.log(data);
+            } else {
+              console.error(this.status + " when call " + URL);
+              alert(this.status);
+            }
+          }
+        };
+        xhttp.open("GET", URL, true);
+        xhttp.send();
+      }
+        callWS();
+    </script>
+  </body>
+</html>
